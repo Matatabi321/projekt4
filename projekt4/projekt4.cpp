@@ -9,6 +9,7 @@ int main()
     while (lift.run())
     {
         lift.update();
+        lift.Movement();
         lift.render();
     }
 
