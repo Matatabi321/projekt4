@@ -6,6 +6,10 @@
 #include<SFML/Audio.hpp>
 #include<SFML/Network.hpp>
 
+#include <iostream>
+#include <Windows.h>
+#include <queue>
+
 class Winda
 {
 private:
@@ -13,6 +17,7 @@ private:
 	sf::Event event;
 	sf::RectangleShape liftshaft, lift, floor;
 	float lvl=600;
+	std::queue<float> liftLVL;
 	
 	//definuja okno
 	void ivariables();
@@ -28,5 +33,6 @@ public:
 	int which(int numer, int diff);
 	void update();
 	void render();
+	void Movement();
 };
 
