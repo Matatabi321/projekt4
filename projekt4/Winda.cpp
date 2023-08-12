@@ -1,6 +1,4 @@
 #include "Winda.h"
-#include <iostream>
-#include <Windows.h>
 
 void Winda::ivariables()
 {
@@ -36,6 +34,26 @@ const bool Winda::run() const
 	uznalem ze za madre to usunalem funkcje
 
 }*/
+void Winda::Movement()
+{
+	if (!liftLVL.empty()) {
+		float pxl;
+
+		if (lvl > liftLVL.front()) {
+			pxl = (-3);
+		}
+		else if (lvl < liftLVL.front()) {
+			pxl = 3;
+		}
+		else pxl = 0;
+
+		lvl = lvl + pxl;
+
+		if (lvl == liftLVL.front()) {
+			liftLVL.pop();
+		}
+	}
+}
 int Winda::which(int numer,int diff)
 {
 	int n=1;
@@ -110,41 +128,53 @@ void Winda::update()
 
 	std::cout<<sf::Mouse::getPosition(*this->window).x<<" "<< sf::Mouse::getPosition(*this->window).y <<"\n";
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		Sleep(30);//bo inaczej przytrzymanie spami (bez tego jak klikniesz raz to wyswietlaja sie 3 komunikaty) jak masz pomysl na inaczej to zmien
+		//system("Pause");
+		Sleep(35);//bo inaczej przytrzymanie spami (bez tego jak klikniesz raz to wyswietlaja sie 3 komunikaty) jak masz pomysl na inaczej to zmien
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 257 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >97)
 			{
 				diff = sf::Mouse::getPosition(*this->window).y - 97;
 				std::cout << "guziki p5 w";
+				liftLVL.push(9);
+				//lvl = 9;
 				std::cout << this->which(5, diff) << " ";
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 534 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >374)
 			{
 				diff = sf::Mouse::getPosition(*this->window).y - 374;
 				std::cout << "guziki p3 w";
+				liftLVL.push(285);
+				//lvl = 284;
 				std::cout << this->which(3, diff) << " ";
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 856 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >696)
 			{
 				diff = sf::Mouse::getPosition(*this->window).y - 696;
 				std::cout << "guziki p1 w";
+				liftLVL.push(606);
+				//lvl = 606;
 				std::cout << this->which(1, diff) << " ";
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 1280 && sf::Mouse::getPosition(*this->window).y < 425 && sf::Mouse::getPosition(*this->window).x >1240 && sf::Mouse::getPosition(*this->window).y >265)
 			{
 				diff = sf::Mouse::getPosition(*this->window).y - 265;
 				std::cout << "guziki p4 w";
+				liftLVL.push(177);
+				//lvl = 175;
 				std::cout << this->which(4, diff) << " ";
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 1280 && sf::Mouse::getPosition(*this->window).y < 710 && sf::Mouse::getPosition(*this->window).x >1240 && sf::Mouse::getPosition(*this->window).y >550)
 			{
 				diff = sf::Mouse::getPosition(*this->window).y - 550;
 				std::cout << "guziki p2 w";
+				liftLVL.push(462);
+				//lvl = 460;
 				std::cout << this->which(2, diff) << " ";
 			}
 		}
 	}
 }
+
 
 void Winda::render()
 {
@@ -157,10 +187,10 @@ void Winda::render()
 	this->liftshaft.setPosition(540.f, 5.f);
 
 	//definiuje winde
-	this->lift.setSize(sf::Vector2f(190.f, 250.f));
+	this->lift.setSize(sf::Vector2f(190.f, 250.f)); 
 	this->lift.setOutlineThickness(3.f);
 	this->lift.setOutlineColor(sf::Color::Red);
-	this->lift.setPosition(545.f, 10.f);
+	this->lift.setPosition(545.f, lvl);//606
 
 	//definiuje pietra
 	this->floor.setSize(sf::Vector2f(540.f, 5.f));
@@ -181,39 +211,39 @@ void Winda::render()
 	this->floor.setPosition(740.f, 425.f);
 	this->window->draw(this->floor);
 
-	
+
 	//rysuje przyciski do windy (każdy przycisk ma rozmiar 40x40
 	sf::Texture obraz1;
-	obraz1.loadFromFile("C:\\projekt winda\\tekstury\\obraz1.png");
+	obraz1.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz1.png");
 	sf::Sprite przycisk1;
 	przycisk1.setTexture(obraz1);
 	przycisk1.setScale(0.08, 0.08);
 
 	sf::Texture obraz2;
-	obraz2.loadFromFile("C:\\projekt winda\\tekstury\\obraz2.png");
+	obraz2.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz2.png");
 	sf::Sprite przycisk2;
 	przycisk2.setTexture(obraz2);
 	przycisk2.setScale(0.08, 0.08);
 
 	sf::Texture obraz3;
-	obraz3.loadFromFile("C:\\projekt winda\\tekstury\\obraz3.png");
+	obraz3.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz3.png");
 	sf::Sprite przycisk3;
 	przycisk3.setTexture(obraz3);
 	przycisk3.setScale(0.08, 0.08);
 
 	sf::Texture obraz4;
-	obraz4.loadFromFile("C:\\projekt winda\\tekstury\\obraz4.png");
+	obraz4.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz4.png");
 	sf::Sprite przycisk4;
 	przycisk4.setTexture(obraz4);
 	przycisk4.setScale(0.08, 0.08);
 
 	sf::Texture obraz5;
-	obraz5.loadFromFile("C:\\projekt winda\\tekstury\\obraz5.png");
+	obraz5.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz5.png");
 	sf::Sprite przycisk5;
 	przycisk5.setTexture(obraz5);
 	przycisk5.setScale(0.08, 0.08);
 
-
+	//pietro 1
 	przycisk2.setPosition(0.f, 816.f);
 	this->window->draw(przycisk2);
 	przycisk3.setPosition(0.f, 776.f);
@@ -222,7 +252,7 @@ void Winda::render()
 	this->window->draw(przycisk4);
 	przycisk5.setPosition(0.f, 696.f);
 	this->window->draw(przycisk5);
-
+	//pietro 3
 	przycisk1.setPosition(0.f, 494.f);
 	this->window->draw(przycisk1);
 	przycisk2.setPosition(0.f, 454.f);
@@ -231,16 +261,16 @@ void Winda::render()
 	this->window->draw(przycisk4);
 	przycisk5.setPosition(0.f, 374.f);
 	this->window->draw(przycisk5);
-
+	//pietro 5
 	przycisk1.setPosition(0.f, 217.f);
 	this->window->draw(przycisk1);
-	 przycisk2.setPosition(0.f, 177.f);
-	 this->window->draw(przycisk2);
-	 przycisk3.setPosition(0.f, 137.f);
-	 this->window->draw(przycisk3);
-	 przycisk4.setPosition(0.f, 97.f);
-	 this->window->draw(przycisk4);
-
+	przycisk2.setPosition(0.f, 177.f);
+	this->window->draw(przycisk2);
+	przycisk3.setPosition(0.f, 137.f);
+	this->window->draw(przycisk3);
+	przycisk4.setPosition(0.f, 97.f);
+	this->window->draw(przycisk4);
+	//pietro 2
 	przycisk1.setPosition(1240.f, 670.f);
 	this->window->draw(przycisk1);
 	przycisk3.setPosition(1240.f, 630.f);
@@ -249,7 +279,7 @@ void Winda::render()
 	this->window->draw(przycisk4);
 	przycisk5.setPosition(1240.f, 550.f);
 	this->window->draw(przycisk5);
-
+	//pietro 4
 	przycisk1.setPosition(1240.f, 385.f);
 	this->window->draw(przycisk1);
 	przycisk2.setPosition(1240.f, 345.f);
@@ -263,6 +293,7 @@ void Winda::render()
 	this->window->draw(this->liftshaft);
 	this->window->draw(this->lift);
 	this->window->display();
+
 }
 
 Winda::Winda()
@@ -274,5 +305,8 @@ Winda::~Winda()
 {
 	delete this->window;
 }
+
+
+
 
 
