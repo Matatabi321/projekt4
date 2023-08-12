@@ -1,4 +1,6 @@
 #include "Winda.h"
+#include <iostream>
+#include <Windows.h>
 
 void Winda::ivariables()
 {
@@ -17,7 +19,7 @@ const bool Winda::run() const
 	return this->window->isOpen();
 }
 
-void Winda::eventupdate()
+/*void Winda::eventupdate()
 {
 	//Zamyka okni kiedy klikniesz X mozna taez dodac inne guziki
 	while (this->window->pollEvent(this->event))
@@ -29,11 +31,119 @@ void Winda::eventupdate()
 			break;
 		}
 	}
+
+
+	uznalem ze za madre to usunalem funkcje
+
+}*/
+int Winda::which(int numer,int diff)
+{
+	int n=1;
+
+	switch (numer)
+	{
+	case 1:
+
+		if (diff <= 40) n = 5;
+		else if (diff <= 80) n = 4;
+		else if (diff <= 120) n = 3;
+		else if (diff <= 160) n = 2;
+		break;
+
+	case 2:
+		if (diff <= 40) n = 5;
+		else if (diff <= 80) n = 4;
+		else if (diff <= 120) n = 3;
+		else if (diff <= 160) n = 1;
+
+		break;
+	case 3:
+		if (diff <= 40) n = 5;
+		else if (diff <= 80) n = 4;
+		else if (diff <= 120) n = 2;
+		else if (diff <= 160) n = 1;
+
+		break;
+	case 4:
+		if (diff <= 40) n = 5;
+		else if (diff <= 80) n = 3;
+		else if (diff <= 120) n = 2;
+		else if (diff <= 160) n = 1;
+
+		break;
+	case 5:
+		if (diff <= 40) n = 4;
+		else if (diff <= 80) n = 3;
+		else if (diff <= 120) n = 2;
+		else if (diff <= 160) n = 1;
+
+		break;
+	}
+
+	return n;
 }
 
 void Winda::update()
 {
-	this->eventupdate();
+	int diff;
+	//this->eventupdate();
+	while (this->window->pollEvent(this->event))
+	{
+		switch (this->event.type)
+		{
+		case sf::Event::Closed:
+			this->window->close();
+			break;
+		}
+	}
+
+	
+	/*
+		sprawdza czy guzik byl klikniety i puszczony
+
+		-sprawdza na ktorym pietrze byl
+		-wysyla to do funkcji which() roznice
+		-which() w zaleznosci od roznicy sprawdza ktore pietro
+
+		(wyswietla sie w kolejnosci na ktorym pietrze co wcisniete)
+	*/
+
+	std::cout<<sf::Mouse::getPosition(*this->window).x<<" "<< sf::Mouse::getPosition(*this->window).y <<"\n";
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+		Sleep(30);//bo inaczej przytrzymanie spami (bez tego jak klikniesz raz to wyswietlaja sie 3 komunikaty) jak masz pomysl na inaczej to zmien
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 257 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >97)
+			{
+				diff = sf::Mouse::getPosition(*this->window).y - 97;
+				std::cout << "guziki p5 w";
+				std::cout << this->which(5, diff) << " ";
+			}
+			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 534 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >374)
+			{
+				diff = sf::Mouse::getPosition(*this->window).y - 374;
+				std::cout << "guziki p3 w";
+				std::cout << this->which(3, diff) << " ";
+			}
+			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 856 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >696)
+			{
+				diff = sf::Mouse::getPosition(*this->window).y - 696;
+				std::cout << "guziki p1 w";
+				std::cout << this->which(1, diff) << " ";
+			}
+			if (sf::Mouse::getPosition(*this->window).x < 1280 && sf::Mouse::getPosition(*this->window).y < 425 && sf::Mouse::getPosition(*this->window).x >1240 && sf::Mouse::getPosition(*this->window).y >265)
+			{
+				diff = sf::Mouse::getPosition(*this->window).y - 265;
+				std::cout << "guziki p4 w";
+				std::cout << this->which(4, diff) << " ";
+			}
+			if (sf::Mouse::getPosition(*this->window).x < 1280 && sf::Mouse::getPosition(*this->window).y < 710 && sf::Mouse::getPosition(*this->window).x >1240 && sf::Mouse::getPosition(*this->window).y >550)
+			{
+				diff = sf::Mouse::getPosition(*this->window).y - 550;
+				std::cout << "guziki p2 w";
+				std::cout << this->which(2, diff) << " ";
+			}
+		}
+	}
 }
 
 void Winda::render()
