@@ -12,6 +12,7 @@ private:
 	sf::RenderWindow* window;
 	sf::Event event;
 	sf::RectangleShape liftshaft, lift, floor;
+	float lvl=600;
 	
 	//definuja okno
 	void ivariables();
@@ -23,7 +24,8 @@ public:
 	 virtual ~Winda();
 
 	const bool run() const;
-	void eventupdate();
+	//void eventupdate();
+	int which(int numer, int diff);
 	void update();
 	void render();
 };
