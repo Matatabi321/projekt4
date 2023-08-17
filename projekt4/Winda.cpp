@@ -54,6 +54,135 @@ void Winda::Movement()
 		}
 	}
 }
+void Winda::robpas(int poziom, int numer)
+{
+	switch (numer)
+	{
+	case 1:
+		
+		switch (poziom)
+		{ 
+		case 2:
+			this->osoba1.setPosition(760.f, 617.f);
+			this->osoby.push_back(this->osoba1);
+			break;
+		case 3:
+			this->osoba1.setPosition(450.f, 441.f);
+			this->osoby.push_back(this->osoba1);
+			break;
+		case 4:
+			this->osoba1.setPosition(760.f, 332.f);
+			this->osoby.push_back(this->osoba1);
+			break;
+		case 5:
+			this->osoba1.setPosition(450.f, 164.f);
+			this->osoby.push_back(this->osoba1);
+			break;
+		default:
+			break;
+		}
+		break;
+	case 2:
+
+		switch (poziom)
+		{
+		case 1:
+			this->osoba2.setPosition(450.f, 763.f);
+			this->osoby.push_back(this->osoba2);
+			break;
+		case 3:
+			this->osoba2.setPosition(450.f, 441.f);
+			this->osoby.push_back(this->osoba2);
+			break;
+		case 4:
+			this->osoba2.setPosition(760.f, 332.f);
+			this->osoby.push_back(this->osoba2);
+			break;
+		case 5:
+			this->osoba2.setPosition(450.f, 164.f);
+			this->osoby.push_back(this->osoba2);
+			break;
+		default:
+			break;
+		}
+		break;
+	case 3:
+
+		switch (poziom)
+		{
+		case 2:
+			this->osoba3.setPosition(760.f, 617.f);
+			this->osoby.push_back(this->osoba3);
+			break;
+		case 1:
+			this->osoba3.setPosition(450.f, 763.f);
+			this->osoby.push_back(this->osoba3);
+			break;
+		case 4:
+			this->osoba3.setPosition(760.f, 332.f);
+			this->osoby.push_back(this->osoba3);
+			break;
+		case 5:
+			this->osoba3.setPosition(450.f, 164.f);
+			this->osoby.push_back(this->osoba3);
+			break;
+		default:
+			break;
+		}
+		break;
+	case 4:
+
+		switch (poziom)
+		{
+		case 2:
+			this->osoba4.setPosition(760.f, 617.f);
+			this->osoby.push_back(this->osoba4);
+			break;
+		case 3:
+			this->osoba4.setPosition(450.f, 441.f);
+			this->osoby.push_back(this->osoba4);
+			break;
+		case 1:
+			this->osoba4.setPosition(450.f, 763.f);
+			this->osoby.push_back(this->osoba4);
+			break;
+		case 5:
+			this->osoba4.setPosition(450.f, 164.f);
+			this->osoby.push_back(this->osoba4);
+			break;
+		default:
+			break;
+		}
+		break;
+	case 5:
+
+		switch (poziom)
+		{
+		case 2:
+			this->osoba5.setPosition(760.f, 617.f);
+			this->osoby.push_back(this->osoba5);
+			break;
+		case 3:
+			this->osoba5.setPosition(450.f, 441.f);
+			this->osoby.push_back(this->osoba5);
+			break;
+		case 4:
+			this->osoba5.setPosition(760.f, 332.f);
+			this->osoby.push_back(this->osoba5);
+			break;
+		case 1:
+			this->osoba5.setPosition(450.f, 763.f);
+			this->osoby.push_back(this->osoba5);
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+	
+}
 int Winda::which(int numer,int diff)
 {
 	int n=1;
@@ -103,7 +232,7 @@ int Winda::which(int numer,int diff)
 
 void Winda::update()
 {
-	int diff;
+	int diff,poziom,numer;
 	//this->eventupdate();
 	while (this->window->pollEvent(this->event))
 	{
@@ -126,53 +255,93 @@ void Winda::update()
 		(wyswietla sie w kolejnosci na ktorym pietrze co wcisniete)
 	*/
 
-	std::cout<<sf::Mouse::getPosition(*this->window).x<<" "<< sf::Mouse::getPosition(*this->window).y <<"\n";
+	//std::cout<<sf::Mouse::getPosition(*this->window).x<<" "<< sf::Mouse::getPosition(*this->window).y <<"\n";
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		//system("Pause");
 		Sleep(35);//bo inaczej przytrzymanie spami (bez tego jak klikniesz raz to wyswietlaja sie 3 komunikaty) jak masz pomysl na inaczej to zmien
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 257 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >97)
 			{
+				poziom = 5;
 				diff = sf::Mouse::getPosition(*this->window).y - 97;
 				std::cout << "guziki p5 w";
 				liftLVL.push(9);
 				//lvl = 9;
-				std::cout << this->which(5, diff) << " ";
+				std::cout << this->which(poziom, diff) << " ";
+				numer = this->which(poziom, diff);
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 534 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >374)
 			{
+				poziom = 3;
 				diff = sf::Mouse::getPosition(*this->window).y - 374;
 				std::cout << "guziki p3 w";
 				liftLVL.push(285);
 				//lvl = 284;
-				std::cout << this->which(3, diff) << " ";
+				std::cout << this->which(poziom, diff) << " ";
+				numer = this->which(poziom, diff);
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 856 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >696)
 			{
+				poziom = 1;
 				diff = sf::Mouse::getPosition(*this->window).y - 696;
 				std::cout << "guziki p1 w";
 				liftLVL.push(606);
 				//lvl = 606;
-				std::cout << this->which(1, diff) << " ";
+				std::cout << this->which(poziom, diff) << " ";
+				numer = this->which(poziom, diff);
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 1280 && sf::Mouse::getPosition(*this->window).y < 425 && sf::Mouse::getPosition(*this->window).x >1240 && sf::Mouse::getPosition(*this->window).y >265)
 			{
+				poziom = 4;
 				diff = sf::Mouse::getPosition(*this->window).y - 265;
 				std::cout << "guziki p4 w";
 				liftLVL.push(177);
 				//lvl = 175;
-				std::cout << this->which(4, diff) << " ";
+				std::cout << this->which(poziom, diff) << " ";
+				numer = this->which(poziom, diff);
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 1280 && sf::Mouse::getPosition(*this->window).y < 710 && sf::Mouse::getPosition(*this->window).x >1240 && sf::Mouse::getPosition(*this->window).y >550)
 			{
+				poziom = 2;
 				diff = sf::Mouse::getPosition(*this->window).y - 550;
 				std::cout << "guziki p2 w";
 				liftLVL.push(462);
 				//lvl = 460;
-				std::cout << this->which(2, diff) << " ";
+				std::cout << this->which(poziom, diff) << " ";
+				numer = this->which(poziom, diff);
 			}
+
+			robpas(poziom,numer);
 		}
 	}
+//	for (auto& e : this->osoby)
+	//{
+		
+//}
+}
+
+void Winda::initpas()
+{
+
+	ludzik1.loadFromFile("C:\\projekt winda\\tekstury\\ludzik1.png");
+	this->osoba1.setTexture(ludzik1);
+	this->osoba1.setScale(0.16, 0.16);
+
+	ludzik2.loadFromFile("C:\\projekt winda\\tekstury\\ludzik2.png");
+	this->osoba2.setTexture(ludzik2);
+	this->osoba2.setScale(0.16, 0.16);
+
+	ludzik3.loadFromFile("C:\\projekt winda\\tekstury\\ludzik3.png");
+	this->osoba3.setTexture(ludzik3);
+	this->osoba3.setScale(0.16, 0.16);
+
+	ludzik4.loadFromFile("C:\\projekt winda\\tekstury\\ludzik4.png");
+	this->osoba4.setTexture(ludzik4);
+	this->osoba4.setScale(0.16, 0.16);
+
+	ludzik5.loadFromFile("C:\\projekt winda\\tekstury\\ludzik5.png");
+	this->osoba5.setTexture(ludzik5);
+	this->osoba5.setScale(0.16, 0.16);
 }
 
 
@@ -292,6 +461,13 @@ void Winda::render()
 	//rysuje winnde i szyb
 	this->window->draw(this->liftshaft);
 	this->window->draw(this->lift);
+
+	//rysowanie ludzików
+	for (auto& e : this->osoby)
+	{
+		this->window->draw(e);
+	}
+	
 	this->window->display();
 
 }
