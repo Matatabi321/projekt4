@@ -9,11 +9,15 @@
 #include <iostream>
 #include <Windows.h>
 #include <queue>
+#include <vector>
 
 class Winda
 {
 private:
 	sf::RenderWindow* window;
+	std::vector<sf::Sprite> osoby;
+	sf::Sprite osoba1, osoba2, osoba3, osoba4, osoba5;
+	sf::Texture ludzik1, ludzik2, ludzik3, ludzik4, ludzik5;
 	sf::Event event;
 	sf::RectangleShape liftshaft, lift, floor;
 	float lvl=600;
@@ -22,6 +26,7 @@ private:
 	//definuja okno
 	void ivariables();
 	void iwindow();
+	void initpas();
 
 public:
 	//konstruktor destrukor
@@ -34,5 +39,6 @@ public:
 	void update();
 	void render();
 	void Movement();
+	void robpas(int numer, int diff);	
 };
 
