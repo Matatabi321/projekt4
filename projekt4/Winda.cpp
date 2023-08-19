@@ -33,7 +33,10 @@ const bool Winda::run() const
 
 	uznalem ze za madre to usunalem funkcje
 
-}*/
+}
+*/
+
+
 void Winda::Movement()
 {
 	if (!liftLVL.empty()) {
@@ -54,6 +57,7 @@ void Winda::Movement()
 		}
 	}
 }
+
 void Winda::robpas(int poziom, int numer)
 {
 	switch (numer)
@@ -183,11 +187,12 @@ void Winda::robpas(int poziom, int numer)
 	}
 	
 }
-int Winda::which(int numer,int diff)
+
+int Winda::which(int poziom,int diff)
 {
 	int n=1;
 
-	switch (numer)
+	switch (poziom)
 	{
 	case 1:
 
@@ -226,7 +231,8 @@ int Winda::which(int numer,int diff)
 
 		break;
 	}
-
+		
+	
 	return n;
 }
 
@@ -344,9 +350,9 @@ void Winda::initpas()
 	this->osoba5.setScale(0.16, 0.16);
 }
 
-
 void Winda::render()
 {
+	this->initpas();
 	this->window->clear(sf::Color::White);
 
 	//definiuje szyb windy
@@ -383,31 +389,31 @@ void Winda::render()
 
 	//rysuje przyciski do windy (każdy przycisk ma rozmiar 40x40
 	sf::Texture obraz1;
-	obraz1.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz1.png");
+	obraz1.loadFromFile("C:\\projekt winda\\tekstury\\obraz1.png");
 	sf::Sprite przycisk1;
 	przycisk1.setTexture(obraz1);
 	przycisk1.setScale(0.08, 0.08);
 
 	sf::Texture obraz2;
-	obraz2.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz2.png");
+	obraz2.loadFromFile("C:\\projekt winda\\tekstury\\obraz2.png");
 	sf::Sprite przycisk2;
 	przycisk2.setTexture(obraz2);
 	przycisk2.setScale(0.08, 0.08);
 
 	sf::Texture obraz3;
-	obraz3.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz3.png");
+	obraz3.loadFromFile("C:\\projekt winda\\tekstury\\obraz3.png");
 	sf::Sprite przycisk3;
 	przycisk3.setTexture(obraz3);
 	przycisk3.setScale(0.08, 0.08);
 
 	sf::Texture obraz4;
-	obraz4.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz4.png");
+	obraz4.loadFromFile("C:\\projekt winda\\tekstury\\obraz4.png");
 	sf::Sprite przycisk4;
 	przycisk4.setTexture(obraz4);
 	przycisk4.setScale(0.08, 0.08);
 
 	sf::Texture obraz5;
-	obraz5.loadFromFile("C:\\Users\\User\\Desktop\\projekt4\\tekstury\\obraz5.png");
+	obraz5.loadFromFile("C:\\projekt winda\\tekstury\\obraz5.png");
 	sf::Sprite przycisk5;
 	przycisk5.setTexture(obraz5);
 	przycisk5.setScale(0.08, 0.08);
@@ -461,28 +467,23 @@ void Winda::render()
 	//rysuje winnde i szyb
 	this->window->draw(this->liftshaft);
 	this->window->draw(this->lift);
-
-	//rysowanie ludzików
+	
 	for (auto& e : this->osoby)
 	{
 		this->window->draw(e);
 	}
 	
-	this->window->display();
 
+	this->window->display();
 }
 
 Winda::Winda()
 {
 	this->ivariables();
 	this->iwindow();
+	this->initpas();
 }
 Winda::~Winda()
 {
 	delete this->window;
 }
-
-
-
-
-
