@@ -188,52 +188,26 @@ void Winda::robpas(int poziom, int numer)
 	
 }
 
-int Winda::which(int poziom,int diff)
+int Winda::cordy(int n)
 {
-	int n=1;
-
-	switch (poziom)
+	switch(n)
 	{
-	case 1:
-
-		if (diff <= 40) n = 5;
-		else if (diff <= 80) n = 4;
-		else if (diff <= 120) n = 3;
-		else if (diff <= 160) n = 2;
+		case 1:
+			return 606;
 		break;
-
-	case 2:
-		if (diff <= 40) n = 5;
-		else if (diff <= 80) n = 4;
-		else if (diff <= 120) n = 3;
-		else if (diff <= 160) n = 1;
-
+		case 2:
+			return 462;
 		break;
-	case 3:
-		if (diff <= 40) n = 5;
-		else if (diff <= 80) n = 4;
-		else if (diff <= 120) n = 2;
-		else if (diff <= 160) n = 1;
-
+		case 3:
+			return 285;
 		break;
-	case 4:
-		if (diff <= 40) n = 5;
-		else if (diff <= 80) n = 3;
-		else if (diff <= 120) n = 2;
-		else if (diff <= 160) n = 1;
-
+		case 4:
+			return 177;
 		break;
-	case 5:
-		if (diff <= 40) n = 4;
-		else if (diff <= 80) n = 3;
-		else if (diff <= 120) n = 2;
-		else if (diff <= 160) n = 1;
-
+		case 5:
+			return 9;
 		break;
 	}
-		
-	
-	return n;
 }
 
 void Winda::update()
@@ -270,53 +244,57 @@ void Winda::update()
 			{
 				poziom = 5;
 				diff = sf::Mouse::getPosition(*this->window).y - 97;
-				std::cout << "guziki p5 w";
+				//std::cout << "guziki p5 w";
 				liftLVL.push(9);
-				//lvl = 9;
-				std::cout << this->which(poziom, diff) << " ";
+				
+				//std::cout << this->which(poziom, diff) << " ";
 				numer = this->which(poziom, diff);
+				liftLVL.push(this->cordy(numer));
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 534 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >374)
 			{
 				poziom = 3;
 				diff = sf::Mouse::getPosition(*this->window).y - 374;
-				std::cout << "guziki p3 w";
+				//std::cout << "guziki p3 w";
 				liftLVL.push(285);
-				//lvl = 284;
-				std::cout << this->which(poziom, diff) << " ";
+				
+				//std::cout << this->which(poziom, diff) << " ";
 				numer = this->which(poziom, diff);
+				liftLVL.push(this->cordy(numer));
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 40 && sf::Mouse::getPosition(*this->window).y < 856 && sf::Mouse::getPosition(*this->window).x >0 && sf::Mouse::getPosition(*this->window).y >696)
 			{
 				poziom = 1;
 				diff = sf::Mouse::getPosition(*this->window).y - 696;
-				std::cout << "guziki p1 w";
+				//std::cout << "guziki p1 w";
 				liftLVL.push(606);
-				//lvl = 606;
-				std::cout << this->which(poziom, diff) << " ";
+				
+				//std::cout << this->which(poziom, diff) << " ";
 				numer = this->which(poziom, diff);
+				liftLVL.push(this->cordy(numer));
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 1280 && sf::Mouse::getPosition(*this->window).y < 425 && sf::Mouse::getPosition(*this->window).x >1240 && sf::Mouse::getPosition(*this->window).y >265)
 			{
 				poziom = 4;
 				diff = sf::Mouse::getPosition(*this->window).y - 265;
-				std::cout << "guziki p4 w";
+				//std::cout << "guziki p4 w";
 				liftLVL.push(177);
-				//lvl = 175;
-				std::cout << this->which(poziom, diff) << " ";
+				
+				//std::cout << this->which(poziom, diff) << " ";
 				numer = this->which(poziom, diff);
+				liftLVL.push(this->cordy(numer));
 			}
 			if (sf::Mouse::getPosition(*this->window).x < 1280 && sf::Mouse::getPosition(*this->window).y < 710 && sf::Mouse::getPosition(*this->window).x >1240 && sf::Mouse::getPosition(*this->window).y >550)
 			{
 				poziom = 2;
 				diff = sf::Mouse::getPosition(*this->window).y - 550;
-				std::cout << "guziki p2 w";
+				//std::cout << "guziki p2 w";
 				liftLVL.push(462);
 				//lvl = 460;
-				std::cout << this->which(poziom, diff) << " ";
+				//std::cout << this->which(poziom, diff) << " ";
 				numer = this->which(poziom, diff);
+				liftLVL.push(this->cordy(numer));
 			}
-
 			robpas(poziom,numer);
 		}
 	}
@@ -329,23 +307,23 @@ void Winda::update()
 void Winda::initpas()
 {
 
-	ludzik1.loadFromFile("C:\\projekt winda\\tekstury\\ludzik1.png");
+	ludzik1.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\ludzik1.png");
 	this->osoba1.setTexture(ludzik1);
 	this->osoba1.setScale(0.16, 0.16);
 
-	ludzik2.loadFromFile("C:\\projekt winda\\tekstury\\ludzik2.png");
+	ludzik2.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\ludzik2.png");
 	this->osoba2.setTexture(ludzik2);
 	this->osoba2.setScale(0.16, 0.16);
 
-	ludzik3.loadFromFile("C:\\projekt winda\\tekstury\\ludzik3.png");
+	ludzik3.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\ludzik3.png");
 	this->osoba3.setTexture(ludzik3);
 	this->osoba3.setScale(0.16, 0.16);
 
-	ludzik4.loadFromFile("C:\\projekt winda\\tekstury\\ludzik4.png");
+	ludzik4.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\ludzik4.png");
 	this->osoba4.setTexture(ludzik4);
 	this->osoba4.setScale(0.16, 0.16);
 
-	ludzik5.loadFromFile("C:\\projekt winda\\tekstury\\ludzik5.png");
+	ludzik5.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\ludzik5.png");
 	this->osoba5.setTexture(ludzik5);
 	this->osoba5.setScale(0.16, 0.16);
 }
@@ -389,31 +367,31 @@ void Winda::render()
 
 	//rysuje przyciski do windy (każdy przycisk ma rozmiar 40x40
 	sf::Texture obraz1;
-	obraz1.loadFromFile("C:\\projekt winda\\tekstury\\obraz1.png");
+	obraz1.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\obraz1.png");
 	sf::Sprite przycisk1;
 	przycisk1.setTexture(obraz1);
 	przycisk1.setScale(0.08, 0.08);
 
 	sf::Texture obraz2;
-	obraz2.loadFromFile("C:\\projekt winda\\tekstury\\obraz2.png");
+	obraz2.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\obraz2.png");
 	sf::Sprite przycisk2;
 	przycisk2.setTexture(obraz2);
 	przycisk2.setScale(0.08, 0.08);
 
 	sf::Texture obraz3;
-	obraz3.loadFromFile("C:\\projekt winda\\tekstury\\obraz3.png");
+	obraz3.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\obraz3.png");
 	sf::Sprite przycisk3;
 	przycisk3.setTexture(obraz3);
 	przycisk3.setScale(0.08, 0.08);
 
 	sf::Texture obraz4;
-	obraz4.loadFromFile("C:\\projekt winda\\tekstury\\obraz4.png");
+	obraz4.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\obraz4.png");
 	sf::Sprite przycisk4;
 	przycisk4.setTexture(obraz4);
 	przycisk4.setScale(0.08, 0.08);
 
 	sf::Texture obraz5;
-	obraz5.loadFromFile("C:\\projekt winda\\tekstury\\obraz5.png");
+	obraz5.loadFromFile("C:\\Users\\User\\Downloads\\projekt4-main (1)\\projekt4-main\\tekstury\\obraz5.png");
 	sf::Sprite przycisk5;
 	przycisk5.setTexture(obraz5);
 	przycisk5.setScale(0.08, 0.08);
