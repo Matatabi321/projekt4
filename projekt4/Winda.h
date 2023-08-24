@@ -34,6 +34,7 @@ public:
 	 virtual ~Winda();
 
 	const bool run() const;
+	int cordy(int numer);
 	//void eventupdate();
 	int which(int numer, int diff);
 	void update();
