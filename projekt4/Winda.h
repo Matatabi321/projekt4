@@ -34,9 +34,10 @@ public:
 	 virtual ~Winda();
 
 	const bool run() const;
-	int cordy(int numer);
+	bool ludz=0;
 	//void eventupdate();
 	int which(int numer, int diff);
+	int cordy(int numer);
 	void update();
 	void render();
 	void Movement();
