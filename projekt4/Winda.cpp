@@ -39,40 +39,39 @@ const bool Winda::run() const
 
 void Winda::Movement()
 {
-	bool ludz=0;
-    if (!liftLVL.empty()) {
-        float pxl;
+	if (!liftLVL.empty()) {
+		float pxl;
 
-        if (lvl > liftLVL.front()) {
-            pxl = (-3);
-        }
-        else if (lvl < liftLVL.front()) {
-            pxl = 3;
-        }
-        else pxl = 0;
+		if (lvl > liftLVL.front()) {
+			pxl = (-3);
+		}
+		else if (lvl < liftLVL.front()) {
+			pxl = 3;
+		}
+		else pxl = 0;
 
-        lvl = lvl + pxl;
+		lvl = lvl + pxl;
 
-        if (lvl == liftLVL.front()) {
-            if (ludz == 0) {
-                this->osoby[0].setPosition(560.f, lvl+150.f);
-                ludz = 1;
-                //this->osoby.begin();
-                //wchodzi do windy
-            }
-            else {
-                ludz = 0;
-                std::cout << "dojechal";
-                this->osoby.erase(osoby.begin());
-                //wychodzi z windy
-            }
-            liftLVL.pop();
-            Sleep(50);
-
-        }
-        if (ludz == 1)
-        this->osoby[0].setPosition(560.f, lvl + pxl + 150.f);
-    }
+		if (lvl == liftLVL.front()) {
+			if (ludz == 0) {
+				this->osoby[0].setPosition(560.f, lvl+150.f);
+				ludz = 1;
+				//this->osoby.begin();
+				//wchodzi do windy
+			}
+			else {
+				ludz = 0;
+				std::cout << "dojechal";
+				this->osoby.erase(osoby.begin());
+				//wychodzi z windy
+			}
+			liftLVL.pop();
+			Sleep(50);
+			
+		}
+		if (ludz == 1)
+		this->osoby[0].setPosition(560.f, lvl + pxl + 150.f);
+	}
 }
 
 void Winda::robpas(int poziom, int numer)
@@ -203,6 +202,54 @@ void Winda::robpas(int poziom, int numer)
 		break;
 	}
 	
+}
+
+int Winda::which(int poziom,int diff)
+{
+	int n=1;
+
+	switch (poziom)
+	{
+	case 1:
+
+		if (diff <= 40) n = 5;
+		else if (diff <= 80) n = 4;
+		else if (diff <= 120) n = 3;
+		else if (diff <= 160) n = 2;
+		break;
+
+	case 2:
+		if (diff <= 40) n = 5;
+		else if (diff <= 80) n = 4;
+		else if (diff <= 120) n = 3;
+		else if (diff <= 160) n = 1;
+
+		break;
+	case 3:
+		if (diff <= 40) n = 5;
+		else if (diff <= 80) n = 4;
+		else if (diff <= 120) n = 2;
+		else if (diff <= 160) n = 1;
+
+		break;
+	case 4:
+		if (diff <= 40) n = 5;
+		else if (diff <= 80) n = 3;
+		else if (diff <= 120) n = 2;
+		else if (diff <= 160) n = 1;
+
+		break;
+	case 5:
+		if (diff <= 40) n = 4;
+		else if (diff <= 80) n = 3;
+		else if (diff <= 120) n = 2;
+		else if (diff <= 160) n = 1;
+
+		break;
+	}
+		
+	
+	return n;
 }
 
 int Winda::cordy(int n)
