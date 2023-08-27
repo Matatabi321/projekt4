@@ -39,6 +39,7 @@ const bool Winda::run() const
 
 void Winda::Movement()
 {
+
 	if (!liftLVL.empty()) {
 		float pxl;
 
@@ -61,16 +62,33 @@ void Winda::Movement()
 			}
 			else {
 				ludz = 0;
-				std::cout << "dojechal";
-				this->osoby.erase(osoby.begin());
+				std::cout << lvl;
+				
+				if (lvl == 462 || lvl == 177)
+					this->osoby[0].setPosition(800.f, lvl + 150.f);
+				else 
+					this->osoby[0].setPosition(350.f, lvl + 150.f);
+
+				for (auto& e : this->osoby)
+					{
+						this->window->draw(e);
+					}
+				this->window->display();
 				//wychodzi z windy
 			}
 			liftLVL.pop();
-			Sleep(50);
+			Sleep(150);
 			
 		}
 		if (ludz == 1)
 		this->osoby[0].setPosition(560.f, lvl + pxl + 150.f);
+		
+
+	}
+	if (!osoby.empty() &&(this->osoby[0].getPosition().x == 800.f || this->osoby[0].getPosition().x == 350.f) && this->osoby[0].getPosition().y == lvl + 150.f)
+	{
+		Sleep(150);
+		this->osoby.erase(this->osoby.begin());
 	}
 }
 
