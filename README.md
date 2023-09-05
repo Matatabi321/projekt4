@@ -5,3 +5,6 @@
 -Zostaje dodane do kolejki piętro na którym znajduje się osoba, a potem piętro docelowe.  
 -Osoby dodawane są do wektora, a następnie usuwane gdy dotrą na piętro docelowe.  
 ## Problemy
+## Autorzy
+Wojciech Podlaszewski 193522  
+Jan Piórkowski 193259  
