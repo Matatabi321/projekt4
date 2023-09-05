@@ -1,6 +1,5 @@
-# projekt4 (Winda)
+# Projekt4 (Winda)
 ## Działanie
-
 -Program rysuje winde, szyb i przyciski.
 
 -Po wciśnięciu przycisku na ekranie pojawia się osoba z numerem piętra jakie zostało wybrane.
